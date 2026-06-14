@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
+<title>Atlantic Capital — Industrial Investment Platform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230E1B2E'/%3E%3Ccircle cx='50' cy='50' r='34' fill='none' stroke='%23D4AF50' stroke-width='2.4'/%3E%3Cline x1='22' y1='58' x2='78' y2='58' stroke='%23D4AF50' stroke-width='1.6'/%3E%3Cpath d='M37 58 L50 32 L63 58' fill='none' stroke='%23D4AF50' stroke-width='3.4' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cline x1='42' y1='49' x2='58' y2='49' stroke='%23D4AF50' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="description" content="Atlantic Capital is an investment platform dedicated to the Portuguese industrial middle-market. A platform of Nexus Advisory Group.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0E1B2E; --navy2:#142235; --navy3:#1B2B42; --line:#23344b;
+  --gold:#D4AF50; --gold2:#E2C065; --goldd:#BD9636;
+  --blue:#2478C8; --blue2:#5AB3F5; --green:#3E8E63;
+  --ink:#1B2838; --paper:#F5F2EC; --paper2:#FBFAF7;
+  --mut:#8A9CB0; --mut2:#6F8295; --white:#FFFFFF;
+  --serif:'Fraunces',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+  --mx:clamp(20px,6vw,120px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:#0E1B2E}
+body{font-family:var(--sans);background:var(--navy);color:#DCE5EE;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:var(--navy)}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:-0.01em}
+.eyebrow{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 var(--mx)}
+
+/* grain + glow atmosphere */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:18px var(--mx);transition:.4s;backdrop-filter:blur(0px)}
+nav.scrolled{background:rgba(14,27,46,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:13px var(--mx)}
+.brand{display:flex;align-items:center;gap:13px}
+.brand svg{width:38px;height:38px;display:block}
+.brand .bt{font-family:var(--sans);font-weight:700;letter-spacing:.18em;font-size:15px;color:#fff;line-height:1.05}
+.brand .bt b{display:block;font-weight:300;color:var(--gold)}
+.navlinks{display:flex;align-items:center;gap:34px}
+.navlinks a{font-size:13.5px;font-weight:500;color:#C2D0DF;letter-spacing:.02em;position:relative;transition:.25s}
+.navlinks a:hover{color:#fff}
+.navlinks a::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--gold);transition:.3s}
+.navlinks a:hover::after{width:100%}
+.btn{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;padding:11px 22px;border-radius:2px;
+  border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;transition:.3s;display:inline-block}
+.btn:hover{background:var(--gold);color:var(--navy)}
+.btn-fill{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.btn-fill:hover{background:var(--gold2);border-color:var(--gold2)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:24px;height:2px;background:#fff;transition:.3s}
+
+/* HERO */
+header.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(120% 90% at 78% 18%,rgba(36,120,200,.18),transparent 55%),
+  radial-gradient(80% 70% at 12% 92%,rgba(212,175,80,.13),transparent 55%),var(--navy)}
+.contours{position:absolute;inset:0;z-index:0;opacity:.5}
+.hero-inner{position:relative;z-index:2;width:100%;padding-top:90px}
+.hero .eyebrow{opacity:0;animation:rise .9s .15s forwards}
+.hero h1{font-size:clamp(42px,7.4vw,92px);color:#fff;margin:20px 0 0;max-width:14ch}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:block;transform:translateY(110%);animation:slideUp 1s cubic-bezier(.16,1,.3,1) forwards}
+.hero h1 .gold{color:var(--gold);font-style:italic}
+.hero p.lead{max-width:54ch;font-size:clamp(16px,1.7vw,19px);color:#B6C5D6;margin:28px 0 0;opacity:0;animation:rise 1s .8s forwards}
+.hero .cta{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;opacity:0;animation:rise 1s 1s forwards}
+.hero .sub{margin-top:46px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);opacity:0;animation:rise 1s 1.2s forwards}
+.hero .sub b{color:var(--gold);font-weight:600}
+.scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;font-size:11px;letter-spacing:.2em;color:var(--mut);text-transform:uppercase;opacity:0;animation:rise 1s 1.5s forwards}
+.scrollcue::after{content:'';display:block;width:1px;height:30px;background:linear-gradient(var(--gold),transparent);margin:10px auto 0}
+
+@keyframes slideUp{to{transform:translateY(0)}}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(34px);transition:.9s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv2{transition-delay:.1s}.rv3{transition-delay:.2s}.rv4{transition-delay:.3s}
+/* progressive enhancement: if JS/animations don't run, everything stays readable */
+html:not(.js) .rv,
+html:not(.js) .hero .eyebrow,
+html:not(.js) .hero h1 .ln span,
+html:not(.js) .hero p.lead,
+html:not(.js) .hero .cta,
+html:not(.js) .hero .sub,
+html:not(.js) .scrollcue{opacity:1!important;transform:none!important;animation:none!important}
+@media (prefers-reduced-motion: reduce){
+  .rv,.rv.in,.hero .eyebrow,.hero h1 .ln span,.hero p.lead,.hero .cta,.hero .sub,.scrollcue
+  {opacity:1!important;transform:none!important;animation:none!important}
+}
+
+/* SECTIONS */
+section{position:relative;z-index:2;padding:clamp(70px,11vh,140px) 0;background:var(--navy)}
+#oportunidade,#verticais,#equipa{background:var(--navy2)}
+.sec-head{max-width:760px;margin-bottom:54px}
+.sec-head h2{font-size:clamp(30px,4.4vw,52px);color:#fff;margin:16px 0 0}
+.sec-head p{color:var(--mut);font-size:17px;margin-top:18px;max-width:60ch}
+.hr{width:54px;height:2px;background:var(--gold);margin-bottom:4px}
+
+/* POSITIONING */
+.pos-grid{display:grid;grid-template-columns:1.5fr auto 1fr;gap:0;align-items:stretch;margin-top:10px}
+.pos-card{background:var(--navy2);border:1px solid var(--line);padding:38px 34px;position:relative}
+.pos-card .top{height:3px;position:absolute;top:0;left:0;right:0}
+.pos-card h3{font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:.12em;color:#fff;margin-bottom:4px}
+.pos-card .role{font-family:var(--serif);font-style:italic;font-size:18px;margin-bottom:22px}
+.pos-card ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.pos-card li{font-size:14.5px;color:#BBCADA;padding-left:20px;position:relative}
+.pos-card li::before{content:'';position:absolute;left:0;top:9px;width:7px;height:7px;border:1px solid var(--gold);transform:rotate(45deg)}
+.pos-x{display:flex;align-items:center;justify-content:center;width:64px;font-family:var(--serif);font-size:34px;color:var(--gold)}
+.pos-note{text-align:center;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--mut);margin-top:34px}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.stat{background:var(--navy);padding:38px 26px;text-align:center}
+.stat .n{font-family:var(--serif);font-size:clamp(38px,5vw,58px);color:var(--gold);line-height:1}
+.stat .l{font-weight:600;font-size:14px;color:#fff;margin:14px 0 8px}
+.stat .d{font-size:12.5px;color:var(--mut);line-height:1.5}
+.src{margin-top:22px;font-size:12px;color:var(--mut2);font-style:italic}
+
+/* APPROACH */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:var(--navy2);border:1px solid var(--line);padding:32px 30px;position:relative;overflow:hidden;transition:.4s}
+.step:hover{transform:translateY(-6px);border-color:var(--gold)}
+.step .num{font-family:var(--serif);font-size:60px;color:var(--navy3);line-height:.8;position:absolute;top:18px;right:22px;transition:.4s}
+.step:hover .num{color:rgba(212,175,80,.22)}
+.step h3{font-family:var(--sans);font-weight:700;letter-spacing:.14em;font-size:15px;color:var(--gold);margin-bottom:14px;position:relative}
+.step p{font-size:14.5px;color:#BBCADA;position:relative}
+.step .tag{margin-top:18px;font-size:12px;color:var(--mut);letter-spacing:.04em;border-top:1px solid var(--line);padding-top:14px}
+
+/* VERTICALS */
+.verts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vert{position:relative;border:1px solid var(--line);background:var(--navy2);padding:0;overflow:hidden;transition:.4s}
+.vert:hover{transform:translateY(-6px)}
+.vert .vhead{padding:26px 28px 22px;color:#fff;position:relative}
+.vert .vn{font-family:var(--serif);font-size:30px;opacity:.9}
+.vert .vt{font-family:var(--sans);font-weight:700;font-size:16px;letter-spacing:.04em;margin-top:6px;line-height:1.2}
+.vert .vbody{padding:22px 28px 30px}
+.vert .vbody p{font-size:13.5px;color:#AEBED0;margin-bottom:16px}
+.vert .vbody .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:9px}
+.vert .vbody ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.vert .vbody li{font-size:13px;color:#C7D4E2;padding-left:16px;position:relative}
+.vert .vbody li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:currentColor;color:var(--gold)}
+
+/* WHY */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line)}
+.why > div{padding:40px 34px;border-right:1px solid var(--line)}
+.why > div:last-child{border-right:none}
+.why .wn{font-family:var(--serif);font-size:20px;color:var(--gold);margin-bottom:6px}
+.why h3{font-family:var(--sans);font-weight:700;font-size:17px;color:#fff;margin-bottom:14px}
+.why p{font-size:14.5px;color:#B6C5D6}
+
+/* NEXUS band */
+.nexus{background:var(--navy2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nexus .wrap{display:flex;align-items:center;gap:50px;flex-wrap:wrap}
+.nexus .big{font-family:var(--serif);font-size:clamp(26px,3.4vw,40px);color:#fff;flex:1;min-width:300px;line-height:1.18}
+.nexus .big em{color:var(--gold);font-style:italic}
+.nexus .txt{flex:1;min-width:280px;color:var(--mut);font-size:15px}
+
+/* TEAM */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.member{background:var(--navy2);border:1px solid var(--line);padding:30px;transition:.4s}
+.member:hover{border-color:var(--gold)}
+.member .av{width:54px;height:54px;border-radius:50%;background:var(--navy3);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px;color:var(--gold);border:1px solid var(--line);margin-bottom:18px}
+.member h3{font-family:var(--sans);font-weight:700;font-size:17px;color:#fff;margin-bottom:3px}
+.member .r{font-size:13px;color:var(--gold);margin-bottom:14px;letter-spacing:.03em}
+.member p{font-size:13.5px;color:#AEBED0}
+
+/* INVESTORS / CONTACT */
+.inv{background:linear-gradient(160deg,var(--navy2),var(--navy));border:1px solid var(--line)}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.inv-grid h2{font-size:clamp(28px,3.8vw,44px);color:#fff}
+.inv-grid .note{margin-top:22px;font-size:14px;color:var(--mut);border-left:2px solid var(--gold);padding-left:18px;background:rgba(212,175,80,.05);padding:16px 18px}
+.gated{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+.gated .row{display:flex;align-items:center;gap:12px;font-size:14px;color:#C7D4E2}
+.gated .row svg{flex:none;color:var(--gold)}
+form{display:flex;flex-direction:column;gap:14px}
+.field label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;background:var(--navy);border:1px solid var(--line);color:#fff;
+  padding:13px 15px;font-family:var(--sans);font-size:14.5px;border-radius:2px;transition:.25s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);background:#0b1626}
+.field textarea{resize:vertical;min-height:90px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--mut)}
+.consent input{margin-top:3px;accent-color:var(--gold)}
+.formmsg{font-size:13px;color:var(--green);min-height:18px}
+
+/* FOOTER */
+footer{background:#0a1422;border-top:1px solid var(--line);padding:60px 0 30px;position:relative;z-index:2}
+.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
+.foot-brand{max-width:340px}
+.foot-brand .bl{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.foot-brand svg{width:40px;height:40px}
+.foot-brand p{font-size:13px;color:var(--mut)}
+.foot-cols{display:flex;gap:60px;flex-wrap:wrap}
+.foot-cols h4{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.foot-cols a,.foot-cols span{display:block;font-size:13.5px;color:#9FB0C2;margin-bottom:9px;transition:.2s}
+.foot-cols a:hover{color:#fff}
+.disclaimer{margin-top:50px;padding-top:26px;border-top:1px solid var(--line);font-size:11.5px;line-height:1.7;color:var(--mut2)}
+.disclaimer b{color:var(--mut)}
+.copy{margin-top:24px;font-size:12px;color:var(--mut2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media(max-width:900px){
+  .navlinks{display:none}.burger{display:flex}
+  .pos-grid{grid-template-columns:1fr}.pos-x{width:auto;padding:14px 0}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .steps,.verts,.team{grid-template-columns:1fr}
+  .why{grid-template-columns:1fr}.why > div{border-right:none;border-bottom:1px solid var(--line)}
+  .inv-grid{grid-template-columns:1fr;gap:36px}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav id="nav">
+  <a class="brand" href="#top">
+    <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#D4AF50" stroke-width="2"/><ellipse cx="50" cy="50" rx="18" ry="44" fill="none" stroke="#D4AF50" stroke-width="1.1" opacity="0.5"/><line x1="14" y1="60" x2="86" y2="60" stroke="#D4AF50" stroke-width="1.4" opacity="0.85"/><path d="M35 60 L50 26 L65 60" fill="none" stroke="#F0EADC" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/><line x1="41" y1="49" x2="59" y2="49" stroke="#F0EADC" stroke-width="3.2" stroke-linecap="round"/></svg>
+    <span class="bt">ATLANTIC<b>CAPITAL</b></span>
+  </a>
+  <div class="navlinks">
+    <a href="#oportunidade">Opportunity</a>
+    <a href="#abordagem">Approach</a>
+    <a href="#verticais">Verticals</a>
+    <a href="#equipa">Team</a>
+    <a href="#processo">Process</a>
+    <a href="#investidores" class="btn">Investors</a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <svg class="contours" preserveAspectRatio="none" viewBox="0 0 1440 900">
+    <g fill="none" stroke="#2478C8" stroke-width="1" opacity="0.10">
+      <path d="M-100 700 Q400 560 760 660 T1540 600"/>
+      <path d="M-100 760 Q420 620 800 720 T1540 660"/>
+      <path d="M-100 820 Q440 690 840 780 T1540 720"/>
+      <path d="M-100 640 Q380 500 720 600 T1540 540"/>
+    </g>
+    <g fill="none" stroke="#D4AF50" stroke-width="1" opacity="0.08">
+      <path d="M-100 580 Q360 440 700 540 T1540 480"/>
+    </g>
+  </svg>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Industrial Investment Platform</span>
+    <h1>
+      <span class="ln"><span style="animation-delay:.25s">We transform</span></span>
+      <span class="ln"><span style="animation-delay:.4s">Portuguese</span></span>
+      <span class="ln"><span style="animation-delay:.55s"><span class="gold">industry.</span></span></span>
+    </h1>
+    <p class="lead">We identify, transform and scale companies in the Portuguese industrial middle-market — with operational discipline and a senior execution network. An investment platform built to create real value.</p>
+    <div class="cta">
+      <a href="#abordagem" class="btn btn-fill">Explore the thesis</a>
+      <a href="#investidores" class="btn">Qualified investors</a>
+    </div>
+    <div class="sub">A platform of <b>Nexus Advisory Group</b></div>
+  </div>
+  <div class="scrollcue">Explore</div>
+</header>
+
+<!-- POSITIONING -->
+<section id="posicionamento">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="hr"></div>
+      <span class="eyebrow">Positioning</span>
+      <h2>The industrial investment platform.</h2>
+      <p>Atlantic Capital identifies, acquires and transforms companies in the industrial middle-market — supported by Nexus's advisory and execution platform.</p>
+    </div>
+    <div class="pos-grid rv rv2">
+      <div class="pos-card">
+        <div class="top" style="background:var(--gold)"></div>
+        <h3>ATLANTIC CAPITAL</h3>
+        <div class="role" style="color:var(--gold)">The investment vehicle</div>
+        <ul>
+          <li>Investment platform dedicated to the industrial middle-market</li>
+          <li>Acquires, holds and develops stakes in target companies</li>
+          <li>Manages the portfolio and prepares exits over a medium-term horizon</li>
+          <li>Interest alignment with investors</li>
+        </ul>
+      </div>
+      <div class="pos-x">&times;</div>
+      <div class="pos-card" style="opacity:.9">
+        <div class="top" style="background:var(--mut)"></div>
+        <h3 style="color:var(--mut2)">NEXUS ADVISORY GROUP</h3>
+        <div class="role" style="color:var(--mut)">The platform behind it</div>
+        <ul>
+          <li>Strategic, financial and M&amp;A advisory, based in Lisbon</li>
+          <li>Proprietary origination, operational playbook and senior network</li>
+        </ul>
+      </div>
+    </div>
+    <p class="pos-note rv rv3">&ldquo;Rooted in Portugal. Built for growth.&rdquo;</p>
+  </div>
+</section>
+
+<!-- OPPORTUNITY -->
+<section id="oportunidade">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="hr"></div>
+      <span class="eyebrow">The opportunity</span>
+      <h2>A structural capital gap in the industrial fabric.</h2>
+      <p>The Portuguese industrial middle-market is deep, export-driven and competitive — yet underserved by growth capital and on the brink of a succession wave.</p>
+    </div>
+    <div class="stats rv rv2">
+      <div class="stat"><div class="n">2,400+</div><div class="l">Target companies</div><div class="d">€5M–€30M revenue without adequate access to growth capital</div></div>
+      <div class="stat"><div class="n">58</div><div class="l">Median founder age</div><div class="d">Imminent succession wave — 60% with no defined plan</div></div>
+      <div class="stat"><div class="n">6.5&times;</div><div class="l">Less PE vs. Benelux</div><div class="d">Structural arbitrage vs. comparable European markets</div></div>
+      <div class="stat"><div class="n">4.2%</div><div class="l">Industrial CAGR</div><div class="d">European manufacturing resurgence driven by nearshoring</div></div>
+    </div>
+    <p class="src rv rv3">Sources: Eurostat, Invest Europe and internal analysis. Market data for illustrative purposes.</p>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="abordagem">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="hr"></div>
+      <span class="eyebrow">The approach</span>
+      <h2>Acquire &middot; Transform &middot; Scale.</h2>
+      <p>An integrated operational approach across the entire holding cycle — where value is created in the transformation, not just at entry.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv rv2"><span class="num">01</span><h3>ACQUIRE</h3><p>Control positions in solid industrial companies at disciplined valuations, through proprietary deal flow originated by Nexus.</p><div class="tag">Companies with €5M–€30M revenue</div></div>
+      <div class="step rv rv3"><span class="num">02</span><h3>TRANSFORM</h3><p>Operational excellence — Lean, ERP, automation and institutional governance — complemented by bolt-ons and geographic expansion.</p><div class="tag">Operational value creation</div></div>
+      <div class="step rv rv4"><span class="num">03</span><h3>SCALE</h3><p>Sustainable organic growth and exit preparation through strategic sale, PE secondary or capital markets.</p><div class="tag">Medium-term horizon</div></div>
+    </div>
+    <div class="rv rv4" style="margin-top:30px;border-left:2px solid var(--gold);padding:16px 22px;background:rgba(212,175,80,.05)"><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:7px">Proprietary methodology</div><p style="font-size:14.5px;color:#C7D4E2;margin:0;line-height:1.6">The selection and validation of each investment is grounded in a <b style="color:#fff;font-weight:600">Sustainable Balanced Scorecard (SBSC)</b> — a multi-dimensional model developed and academically validated in a master's thesis, to support investment decisions in industrial-focused funds.</p></div>
+  </div>
+</section>
+
+<!-- VERTICALS -->
+<section id="verticais">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="hr"></div>
+      <span class="eyebrow">Mandate</span>
+      <h2>Agnostic approach, anchored in three verticals.</h2>
+      <p>Flexible sector mandate, with opportunity mapping across three verticals of robust thesis, favorable timing and internationalization potential.</p>
+    </div>
+    <div class="verts">
+      <div class="vert rv rv2">
+        <div class="vhead" style="background:#1E2E48"><div class="vn">01</div><div class="vt">Manufacturing &amp; Industrial</div></div>
+        <div class="vbody"><p>Nearshoring is relocating supply chains to Europe. Portugal attracts investment from Germany, France and the US.</p>
+        <div class="lab">Target segments</div><ul><li>Precision mechanics and metalworking</li><li>Automotive and aeronautics components</li><li>Industrial plastics and molds</li><li>Equipment and industrial automation</li></ul></div>
+      </div>
+      <div class="vert rv rv3">
+        <div class="vhead" style="background:#2C5F2D"><div class="vn">02</div><div class="vt">Agrofood &amp; Packaging</div></div>
+        <div class="vbody"><p>Portugal is a leading exporter of olive oil, wine and canned goods. ESG pressure drives demand for packaging and traceability innovation.</p>
+        <div class="lab">Target segments</div><ul><li>Canned and processed foods</li><li>Olive oil and wines for export</li><li>Sustainable and recyclable packaging</li><li>Functional and nutritional ingredients</li></ul></div>
+      </div>
+      <div class="vert rv rv4">
+        <div class="vhead" style="background:#7A4A1E"><div class="vn">03</div><div class="vt">Defense &amp; Dual-Use</div></div>
+        <div class="vbody"><p>NATO commitment accelerates modernization of the defense industrial base and demand for civil and military dual-use capabilities.</p>
+        <div class="lab">Target segments</div><ul><li>Electronic components and systems</li><li>Protection vehicles and structures</li><li>Secure communications and cybersecurity</li><li>Advanced materials and composites</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="porque">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="hr"></div>
+      <span class="eyebrow">Differentiation</span>
+      <h2>Why Atlantic Capital.</h2>
+    </div>
+    <div class="why rv rv2">
+      <div><div class="wn">01</div><h3>Operational platform</h3><p>Access to senior leadership across the industrial chain and a proven transformation playbook — Lean, ERP, automation and governance.</p></div>
+      <div><div class="wn">02</div><h3>Exclusive access</h3><p>Proprietary deal flow originated by a cross-sector network of entrepreneurs, off the radar of banks and larger funds.</p></div>
+      <div><div class="wn">03</div><h3>Alignment</h3><p>Focus on real value creation and capital discipline, with full interest alignment with investors.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXUS BAND -->
+<section class="nexus" style="padding:30px 0">
+  <div class="wrap">
+    <div class="rv" style="font-size:14px;color:var(--mut);letter-spacing:.04em;text-align:center">Operated with the support of <em style="color:var(--gold);font-style:normal;font-weight:600">Nexus Advisory Group</em> — an independent advisory and execution platform based in Lisbon.</div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="equipa">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="hr"></div>
+      <span class="eyebrow">Leadership</span>
+      <h2>An operational, financial and legal team.</h2>
+    </div>
+    <div class="team">
+      <div class="member rv rv2"><div class="av">NV</div><h3>Nuno Vieira</h3><div class="r">Managing Partner &middot; Operations</div><p>20+ years in industrial transformation and operations; former CFO and executive board member at industrial groups. Founder of Nexus Advisory Group.</p></div>
+      <div class="member rv rv3"><div class="av">MC</div><h3>Miguel Carvalho</h3><div class="r">Managing Partner &middot; Strategy &amp; Legal</div><p>Specialization in M&amp;A, deal structuring and corporate governance, with experience in cross-border transactions.</p></div>
+      <div class="member rv rv4"><div class="av">&middot;</div><h3>Investment Partner</h3><div class="r">Managing Partner &middot; Investment</div><p>Position being appointed — track record in Private Equity and Venture Capital, with origination and exits experience.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="processo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="hr"></div>
+      <span class="eyebrow">Process</span>
+      <h2>How we work with investors.</h2>
+      <p>A clear, disciplined path from first contact to first close.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv rv2"><span class="num">01</span><h3>INITIAL DISCUSSION</h3><p>Thesis presentation, Q&amp;A sessions with the team and sharing of supplementary materials under NDA.</p><div class="tag">Weeks 1–2</div></div>
+      <div class="step rv rv3"><span class="num">02</span><h3>DUE DILIGENCE</h3><p>Data room access, meetings with operators and advisors, and in-depth pipeline analysis.</p><div class="tag">Weeks 3–6</div></div>
+      <div class="step rv rv4"><span class="num">03</span><h3>DOCUMENTATION</h3><p>Term sheet preparation and review, final negotiation of terms and first close.</p><div class="tag">Weeks 7–10</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTORS / CONTACT -->
+<section id="investidores">
+  <div class="wrap">
+    <div class="inv" style="padding:clamp(34px,5vw,64px)">
+      <div class="inv-grid">
+        <div class="rv">
+          <span class="eyebrow">Qualified investors</span>
+          <h2 style="margin-top:14px">Let's talk.</h2>
+          <div class="note">Detailed information — full thesis, parameters and pipeline — is intended exclusively for <b>professional and qualified investors</b>, and is made available upon signing a non-disclosure agreement (NDA).</div>
+          <div class="gated">
+            <div class="row"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Investor materials and data room under NDA</div>
+            <div class="row"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> info@atlanticcapital.pt</div>
+            <div class="row"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg> Av. da Liberdade, Lisbon, Portugal</div>
+          </div>
+        </div>
+        <div class="rv rv2">
+          <!-- Formspree: replace YOUR_FORM_ID with Atlantic's endpoint -->
+          <form id="invForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="field"><label>Name</label><input name="nome" required placeholder="Your name"></div>
+            <div class="field"><label>Organization</label><input name="organizacao" placeholder="Family office, fund, company…"></div>
+            <div class="field"><label>Email</label><input type="email" name="email" required placeholder="email@example.com"></div>
+            <div class="field"><label>Profile</label>
+              <select name="perfil">
+                <option>Professional / qualified investor</option>
+                <option>Family office</option>
+                <option>Entrepreneur / industrial</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field"><label>Message</label><textarea name="mensagem" placeholder="How can we help?"></textarea></div>
+            <label class="consent"><input type="checkbox" required>I confirm I am a professional/qualified investor and agree to be contacted. I have read the legal notice below.</label>
+            <button class="btn btn-fill" type="submit" style="margin-top:4px">Request access</button>
+            <div class="formmsg" id="formmsg"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="bl"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#D4AF50" stroke-width="2"/><ellipse cx="50" cy="50" rx="18" ry="44" fill="none" stroke="#D4AF50" stroke-width="1.1" opacity="0.5"/><line x1="14" y1="60" x2="86" y2="60" stroke="#D4AF50" stroke-width="1.4" opacity="0.85"/><path d="M35 60 L50 26 L65 60" fill="none" stroke="#F0EADC" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/><line x1="41" y1="49" x2="59" y2="49" stroke="#F0EADC" stroke-width="3.2" stroke-linecap="round"/></svg><span class="bt" style="font-family:var(--sans);font-weight:700;letter-spacing:.16em;font-size:14px;color:#fff">ATLANTIC<b style="display:block;font-weight:300;color:var(--gold)">CAPITAL</b></span></div>
+        <p>Investment platform dedicated to the Portuguese industrial middle-market. A platform of Nexus Advisory Group.</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h4>Navigation</h4>
+          <a href="#oportunidade">Opportunity</a>
+          <a href="#abordagem">Approach</a>
+          <a href="#verticais">Verticals</a>
+          <a href="#equipa">Team</a>
+          <a href="#processo">Process</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:info@atlanticcapital.pt">info@atlanticcapital.pt</a>
+          <span>Av. da Liberdade, Lisbon</span>
+          <span>Portugal</span>
+          <a href="#investidores">Qualified investors</a>
+        </div>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <b>Legal notice.</b> Atlantic Capital is an investment platform. The information contained on this site is for informational purposes only and does not constitute an offer, invitation or solicitation to subscribe for, acquire or dispose of any securities or financial instruments, nor investment, legal, tax or accounting advice. Any detailed materials are intended exclusively for professional and qualified investors, as defined under applicable law, and are made available upon signing a confidentiality agreement. As of the present date, Atlantic Capital is not a collective investment undertaking registered or authorized by the CMVM; any references to structure, returns or performance are indicative and do not represent any guarantee of future results. Investing involves risk, including the total loss of invested capital.
+    </div>
+    <div class="copy">
+      <span>&copy; <span id="yr"></span> Atlantic Capital. All rights reserved.</span>
+      <span>A platform of Nexus Advisory Group</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// nav scroll state
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+// reveal — with a safety net so no section can ever stay hidden
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.rv'));
+  var show=function(el){el.classList.add('in');};
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target);}});},{threshold:0.05,rootMargin:'0px 0px -4% 0px'});
+    els.forEach(function(el){io.observe(el);});
+    // guarantee everything becomes visible shortly after load, regardless of observer/scroll behaviour
+    window.addEventListener('load',function(){setTimeout(function(){els.forEach(show);},600);});
+    setTimeout(function(){els.forEach(show);},2000);
+  } else { els.forEach(show); }
+})();
+// year
+document.getElementById('yr').textContent=new Date().getFullYear();
+// burger -> simple anchor scroll list
+document.getElementById('burger').addEventListener('click',()=>{document.getElementById('investidores').scrollIntoView()});
+// form (Formspree AJAX; falls back to normal POST if endpoint set)
+const form=document.getElementById('invForm'),msg=document.getElementById('formmsg');
+form.addEventListener('submit',async e=>{
+  if(form.action.includes('YOUR_FORM_ID')){e.preventDefault();msg.style.color='var(--gold)';msg.textContent='Configure the Formspree endpoint to enable sending.';return;}
+  e.preventDefault();msg.textContent='Sending…';msg.style.color='var(--mut)';
+  try{const r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(r.ok){form.reset();msg.style.color='var(--green)';msg.textContent='Thank you. We will be in touch.';}
+    else{msg.style.color='#e07a7a';msg.textContent='An error occurred. Try info@atlanticcapital.pt';}
+  }catch{msg.style.color='#e07a7a';msg.textContent='An error occurred. Try info@atlanticcapital.pt';}
+});
+</script>
+</body>
+</html>
