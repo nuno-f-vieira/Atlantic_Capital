@@ -11,11 +11,13 @@
   --ink:#16222f;
   --muted:#5a6676;
   --line:#dde3ea;
-  --gold:#c9a24a;
-  --gold-deep:#8f6d22;
-  --gold-soft:#f1e6c8;
-  --serif:"Fraunces",Georgia,"Times New Roman",serif;
-  --sans:"DM Sans","Segoe UI",system-ui,sans-serif;
+  --gold:#0e1b2e;
+  --gold-deep:#0e1b2e;
+  --gold-soft:#e7ecf1;
+  --brand:#B08D57;
+  --brand-light:#C49A62;
+  --serif:"Libre Franklin","Segoe UI",system-ui,sans-serif;
+  --sans:"Libre Franklin","Segoe UI",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -354,3 +356,20 @@ footer a:hover{color:#fff}
 .duo .h2{font-size:clamp(1.6rem,2.6vw,2.15rem)}
 .duo .lead{font-size:1rem}
 @media (max-width:860px){.duo{grid-template-columns:1fr}.duo>div,.duo>div+div{padding:0;border-left:0}.duo>div+div{margin-top:48px;padding-top:48px;border-top:1px solid var(--line)}}
+
+/* --- Type and colour direction (Nov 2026): one grotesque, weight instead of italic,
+   brand bronze reserved for the Atlantic emblem and wordmark. --- */
+.hero h1,.h2,.vert h3{font-weight:600;letter-spacing:-.03em}
+.hero h1{font-size:clamp(2.5rem,5.2vw,4.1rem);line-height:1.06}
+.hero h1 strong,.h2 em{font-style:normal;font-weight:600;color:inherit}
+.support h2 em,.sec.band .h2 em{font-style:normal;font-weight:600;color:#ffffff}
+.brand span{color:var(--brand)}
+footer .brand span{color:var(--brand-light)}
+.sb-tot b{font-weight:500}
+/* Dark grounds: labels and rules in cool light tones, headings at the same weight as the light grounds. */
+.support .eyebrow,.sec.band .eyebrow{color:#aebdce}
+.support .eyebrow::before,.sec.band .eyebrow::before{background:rgba(255,255,255,.45)}
+.support h2{font-weight:600;letter-spacing:-.02em}
+.phero h1{font-weight:600;letter-spacing:-.03em}
+.phero{border-bottom-color:rgba(255,255,255,.18)}
+footer h4{color:#9fb0c2}
