@@ -373,3 +373,38 @@ footer .brand span{color:var(--brand-light)}
 .phero h1{font-weight:600;letter-spacing:-.03em}
 .phero{border-bottom-color:rgba(255,255,255,.18)}
 footer h4{color:#9fb0c2}
+
+/* Homepage hero: Iberian cities and their trade flows over alternating photographs. */
+.hero.has-img .hero-bg{display:none}
+.hero-shots,.hero.has-img .hero-geo{position:absolute;top:0;bottom:0;right:0;left:46%;overflow:hidden;
+ -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.4) 25%,#000 55%),linear-gradient(180deg,#000 58%,rgba(0,0,0,.25) 88%,transparent 100%);
+ -webkit-mask-composite:source-in;
+ mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.4) 25%,#000 55%),linear-gradient(180deg,#000 58%,rgba(0,0,0,.25) 88%,transparent 100%);
+ mask-composite:intersect}
+.hero.has-img .hero-geo{display:block;mix-blend-mode:multiply}
+.hero-shots .ph{position:absolute;inset:0;background-position:center;background-size:cover;
+ filter:saturate(.52) contrast(1.02) brightness(1.06);opacity:0;transform-origin:58% 50%;
+ animation:fade 20s linear infinite, kb 20s ease-in-out infinite;animation-delay:calc(var(--k)*5s)}
+@keyframes fade{0%{opacity:0}3%{opacity:.62}22%{opacity:.62}28%{opacity:0}100%{opacity:0}}
+@keyframes kb{0%{transform:scale(1.02)}25%{transform:scale(1.09)}100%{transform:scale(1.02)}}
+.hero-geo .geo-svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-geo .mer{animation:drift 30s ease-in-out infinite}
+@keyframes drift{0%{transform:translateX(0)}50%{transform:translateX(-24px)}100%{transform:translateX(0)}}
+.hero-geo .land{stroke-dasharray:4200;stroke-dashoffset:4200;animation:coast 2.8s ease forwards .3s}
+.hero-geo .pt{animation-duration:2.3s;animation-delay:.7s}
+@keyframes coast{to{stroke-dashoffset:0}}
+.hero-geo .nd{opacity:0;animation:ndin .7s ease forwards;animation-delay:calc(2.2s + var(--i)*.18s)}
+@keyframes ndin{to{opacity:1}}
+.hero-geo .halo{animation:halo 5s ease-out infinite;animation-delay:calc(3s + var(--i)*.8s)}
+@keyframes halo{0%{r:9;opacity:.5}55%{r:40;opacity:0}100%{r:40;opacity:0}}
+.hero-geo .guide{opacity:0;animation:gin 1.4s ease forwards 2.8s}
+@keyframes gin{to{opacity:.22}}
+@keyframes fin{to{opacity:.6}}
+.hero-geo .comet{stroke-dasharray:11 24;stroke-dashoffset:0;opacity:0;
+ animation:run 2.2s linear infinite, fin 1s ease forwards;
+ animation-delay:calc(2.9s + var(--j)*.18s), calc(2.9s + var(--j)*.18s)}
+@keyframes run{to{stroke-dashoffset:-70}}
+@media (prefers-reduced-motion:reduce){.hero-shots .ph,.hero-geo *{animation:none!important;stroke-dashoffset:0!important;transform:none!important}
+ .hero-shots .ph{opacity:0}.hero-shots .ph[style*="--k:0"]{opacity:.6}.hero-geo .comet{opacity:0}}
+@media (max-width:900px){.hero-shots,.hero.has-img .hero-geo{left:0;-webkit-mask-image:none;mask-image:none}
+ .hero.has-img .hero-geo{opacity:.3}}
