@@ -52,3 +52,16 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelect
     if(u.pathname===location.pathname && !u.hash){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); }});
 })();
 
+/* Hero film player */
+(function(){
+  var m=document.getElementById('film'); if(!m) return;
+  var v=m.querySelector('video'), open=document.querySelector('[data-film]'), last=null;
+  function show(){ last=document.activeElement; m.hidden=false; document.body.style.overflow='hidden';
+    try{ v.play(); }catch(e){} m.querySelector('.film-close').focus(); }
+  function hide(){ m.hidden=true; document.body.style.overflow=''; try{ v.pause(); }catch(e){}
+    if(last) last.focus(); }
+  if(open) open.addEventListener('click',show);
+  m.addEventListener('click',function(e){ if(e.target===m) hide(); });
+  m.querySelector('.film-close').addEventListener('click',hide);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !m.hidden) hide(); });
+})();
