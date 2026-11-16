@@ -436,3 +436,75 @@ footer .brand b{color:#ffffff}
 footer .brand span{color:var(--brand-light)}
 .eyebrow{color:var(--gold-deep)}
 .support .eyebrow,.sec.band .eyebrow{color:rgba(255,255,255,.85)}
+
+/* --- Reference refinement (Nov 2026): same navy and petrol, firmer type, white grounds,
+   rounded photo cards, a navy closing band. --- */
+:root{--bg:#ffffff;--tint:#78a9b3}
+body{font-size:18px}
+.sec.alt{background:var(--mist);border-block:0}
+/* 1-2. firmer headings; the second clause in a light petrol tint */
+.hero h1,.h2,.phero h1{font-weight:700;letter-spacing:-.028em}
+.hero h1{font-size:clamp(2.4rem,4.9vw,3.9rem);line-height:1.08}
+.hero h1 strong{display:inline;font-weight:700;color:var(--tint)}
+.h2 em{font-weight:700;color:var(--tint)}
+.sec.band .h2 em{color:rgba(255,255,255,.62)}
+.lead b,.prose b{color:var(--navy);font-weight:600}
+/* 6. section labels: the heading carries the section; keep them only in the heroes */
+.sec .eyebrow{display:none}
+.sec .eyebrow+.h2{margin-top:0}
+/* 5. header button: filled navy, sentence case */
+.nav-cta{background:var(--navy);border-color:var(--navy);color:#fff;text-transform:none;letter-spacing:.01em;font-size:.88rem;padding:10px 20px;border-radius:8px}
+.nav-cta:hover{background:var(--navy-deep);border-color:var(--navy-deep)}
+.menu{font-size:.94rem}
+.menu a{color:var(--navy)}
+/* 7. softer geometry */
+.btn{border-radius:8px;font-weight:600}
+.btn.light{background:#fff;border-color:#fff;color:var(--navy)}
+.btn.light:hover{background:var(--mist);border-color:var(--mist)}
+.persp{gap:20px;border:0}
+.persp>div{border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(14,27,46,.04),0 10px 28px -16px rgba(14,27,46,.18)}
+.callout{border-radius:0 12px 12px 0}
+.mdl-box{border-radius:14px;overflow:hidden}
+.stats b{font-weight:500}
+/* 3. three photo cards under the hero */
+.gcards-sec{padding-block:0 8px;background:var(--paper)}
+.gcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;transform:translateY(-36px)}
+.gcard{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:300px;padding:28px 84px 28px 28px;
+ border-radius:16px;overflow:hidden;text-decoration:none;color:#fff;background:var(--navy) center/cover no-repeat;
+ box-shadow:0 18px 40px -22px rgba(14,27,46,.45);isolation:isolate}
+.gcard::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,27,46,.08) 25%,rgba(14,27,46,.82) 100%);transition:background .3s}
+.gcard:hover::before{background:linear-gradient(180deg,rgba(14,27,46,.18) 15%,rgba(14,27,46,.9) 100%)}
+.gcard.dark{background:var(--navy)}
+.gcard.dark::before{background:radial-gradient(120% 90% at 100% 0%,rgba(21,106,124,.45),transparent 60%)}
+.gc-t{font-size:1.45rem;font-weight:700;letter-spacing:-.015em;line-height:1.2}
+.gc-d{font-size:.95rem;line-height:1.5;color:rgba(255,255,255,.82);max-width:34ch}
+.gc-go{position:absolute;right:24px;bottom:24px;width:48px;height:48px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;transition:transform .25s}
+.gc-go svg{width:22px;height:22px}
+.gcard:hover .gc-go{transform:translate(2px,-2px)}
+@media (max-width:900px){.gcards{grid-template-columns:1fr;transform:none;padding-block:28px 8px;gap:16px}.gcard{min-height:190px}}
+/* 9. Acquire / Transform / Scale as photo cards with centred titles */
+.pcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:48px}
+.pcard{position:relative;min-height:320px;border-radius:16px;overflow:hidden;background:var(--navy) center/cover no-repeat;isolation:isolate;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;text-align:center;color:#fff}
+.pcard::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(14,27,46,.66);transition:background .3s}
+.pcard:hover::before{background:rgba(14,27,46,.74)}
+.pcard h3{font-size:1.6rem;font-weight:700;letter-spacing:-.015em}
+.pcard p{font-size:.96rem;line-height:1.55;color:rgba(255,255,255,.86);max-width:30ch}
+@media (max-width:900px){.pcards{grid-template-columns:1fr}.pcard{min-height:220px}}
+/* 4. navy closing band that runs into the footer */
+.closing{background:var(--navy);color:#fff;text-align:center;padding-block:96px 88px}
+.closing .h2{color:#fff;margin:0 auto;max-width:22ch}
+.closing .h2 em{color:var(--tint)}
+.closing .cta{justify-content:center;margin-top:32px}
+.closing .link{color:#fff;border-bottom-color:rgba(255,255,255,.45)}
+footer{background:var(--navy)}
+.closing+.film-modal+footer .fgrid,.closing~footer .fgrid{border-top:1px solid rgba(255,255,255,.12)}
+
+/* Mobile hero: the photographs and the map move below the text instead of sitting behind it */
+@media (max-width:900px){
+ .hero.has-img{padding-bottom:304px}
+ .hero-shots{display:none}
+ .hero.has-img .hero-geo{top:auto;bottom:24px;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));height:260px;border-radius:16px;opacity:1;background:var(--mist);mix-blend-mode:normal}
+ .hero-play{justify-self:start}
+ .hero-in{padding-block:48px 28px}
+}
