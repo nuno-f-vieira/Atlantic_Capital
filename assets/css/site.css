@@ -509,7 +509,13 @@ footer{background:var(--navy)}
  .hero-in{padding-block:48px 28px}
 }
 
+
 /* Status de plataforma, acima da dobra */
-.hero-status{margin-top:22px;max-width:52ch;font-size:.8rem;line-height:1.55;color:var(--muted)}
-.hero-status b{color:var(--navy);font-weight:600}
-@media (max-width:620px){.hero-status{font-size:.76rem;margin-top:18px}}
+.hero-status{margin-top:22px;font-size:.82rem;line-height:1.5;color:var(--muted)}
+.hero-status a{color:var(--navy);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(21,106,124,.45);padding-bottom:1px;white-space:nowrap}
+.hero-status a:hover{border-bottom-color:var(--gold)}
+.hero-status .arr{font-weight:400}
+/* destaca o aviso legal quando se chega por remissao */
+.disclaimer{scroll-margin-top:90px;transition:background .3s}
+.disclaimer:target{background:rgba(255,255,255,.07)}
+@media (max-width:620px){.hero-status{font-size:.78rem;margin-top:18px}}
