@@ -30,8 +30,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelect
   const f=document.getElementById('invForm');
   if(!f)return;
   const msg=document.getElementById('formmsg'),pt=document.documentElement.lang==='pt';
-  const T=pt?{cfg:'Formulário ainda não ligado. Escreva para info@atlanticcapital.pt.',send:'A enviar…',ok:'Obrigado. Entraremos em contacto.',err:'Ocorreu um erro. Escreva para info@atlanticcapital.pt.'}
-           :{cfg:'Form not yet connected. Please write to info@atlanticcapital.pt.',send:'Sending…',ok:'Thank you. We will be in touch.',err:'Something went wrong. Please write to info@atlanticcapital.pt.'};
+  const T=pt?{cfg:'Formulário ainda não ligado. Escreva para investors@atlanticcapital.pt.',send:'A enviar…',ok:'Obrigado. Entraremos em contacto.',err:'Ocorreu um erro. Escreva para investors@atlanticcapital.pt.'}
+           :{cfg:'Form not yet connected. Please write to investors@atlanticcapital.pt.',send:'Sending…',ok:'Thank you. We will be in touch.',err:'Something went wrong. Please write to investors@atlanticcapital.pt.'};
   f.addEventListener('submit',async e=>{
     e.preventDefault();
     if(f.action.includes('YOUR_FORM_ID')){msg.textContent=T.cfg;return;}
